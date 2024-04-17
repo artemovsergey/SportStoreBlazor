@@ -7,7 +7,7 @@ public  class SportStoreContext : DbContext
 {
 
     public DbSet<User> Users { get; set; }
-
+    public DbSet<Role> Role { get; set; }
     public SportStoreContext()
     {
         Database.EnsureCreated();    

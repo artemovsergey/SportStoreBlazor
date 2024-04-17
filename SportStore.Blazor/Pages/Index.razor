@@ -1,0 +1,42 @@
+﻿@page "/Index"
+
+<PageTitle> Главная страница </PageTitle>
+
+@inject HttpClient http
+
+@if(Users.Count() == 0)
+{
+    <h3> Загрузка данных о пользователях...</h3>
+}
+else
+{
+    
+    foreach (var u in Users)
+    {
+        <h3> @u.Name</h3>
+    }
+
+}
+
+
+@code {
+    IEnumerable<User> Users = new List<User>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Users = await http.GetFromJsonAsync<IEnumerable<User>>($"{http.BaseAddress}api/Users");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"{ex.InnerException.Message}");
+        }
+
+    }
+
+
+
+
+
+}

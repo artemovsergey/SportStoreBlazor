@@ -1,12 +1,43 @@
 ﻿@page "/"
 @page "/Sign"
-
+@using Blazored.FluentValidation
 
 <PageTitle> Регистрация </PageTitle>
 
+<div class="row">
+    <div class="col">
+      
+        <EditForm class="m-2 p-2 border border-1 border-primary" EditContext="model" OnValidSubmit="Submit">
+
+            <ValidationSummary />
+            <FluentValidationValidator/>
+            
+            
+            <InputText class="m-2 p-2" @bind-Value="user.Login" placeholder="Логин" />
+            <InputText class="m-2 p-2" @bind-Value="user.Password" placeholder="Пароль"/>
+            <p>
+                <button type="submit" class="m-2 p-2 btn btn-lg btn-primary">Отправить</button>
+            </p>
+
+        </EditForm>
+    </div>
+</div>
+
+
 
 @code{
+    User user = new();
+    EditContext model;
 
+    protected override async Task OnInitializedAsync()
+    {
+        model = new(user);
+    }
+
+    public void Submit()
+    {
+        Console.WriteLine("Форма валидна и отправлена!");
+    }
 
 
 }

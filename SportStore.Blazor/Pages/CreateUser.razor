@@ -1,0 +1,64 @@
+﻿@page "/CreateUser"
+
+@inject HttpClient http
+
+<PageTitle> Создание пользователя </PageTitle>
+
+<div class="container">
+    <div class="row">
+    <div class="col">
+      
+        <EditForm class="m-2 p-2 border border-1 border-primary" EditContext="model" OnValidSubmit="Submit">
+
+            <ValidationSummary />
+
+            <InputText class="m-2 p-2" @bind-Value="user.Surname" placeholder="Фамилия" />
+            <InputText class="m-2 p-2" @bind-Value="user.Name" placeholder="Имя" />
+            <InputText class="m-2 p-2" @bind-Value="user.Patronymic" placeholder="Отчество" />
+            <InputText class="m-2 p-2" @bind-Value="user.Login" placeholder="Логин" />
+            <InputText class="m-2 p-2" @bind-Value="user.Password" placeholder="Пароль"/>
+
+            <InputSelect @bind-Value="@user.RoleId" multiple>
+                @foreach (var r in Roles)
+                {
+                    <option value="@r.Id">@r.Name</option>
+                }
+            </InputSelect>
+
+            <p>
+                <button type="submit" class="m-2 p-2 btn btn-lg btn-primary">Отправить</button>
+            </p>
+
+        </EditForm>
+    </div>
+</div>
+</div>
+
+@if(user == null)
+{
+    <h3> Пользователь создается!</h3>
+}
+else
+{
+    <h3> @user.Name </h3>
+}
+
+
+@code {
+    EditContext model;
+    User user = new();
+    IEnumerable<Role> Roles { get; set; } = new List<Role>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        model = new(user);
+        Roles = await http.GetFromJsonAsync<IEnumerable<Role>>("https://localhost:7214/api/Roles");
+        Console.WriteLine(Roles);
+    }
+
+    public async Task Submit()
+    {
+        var response = await http.PostAsJsonAsync("https://localhost:7214/api/Users/", user);
+        Console.WriteLine(response.IsSuccessStatusCode);
+    }
+}
