@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Blazor", "SportS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{205AB4FC-D304-49FF-9CC8-4EEE1919CB3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Infrastructure", "SportStore.Infrastructure\SportStore.Infrastructure.csproj", "{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
