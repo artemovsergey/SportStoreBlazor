@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Application", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Domen", "SportStore.Domen\SportStore.Domen.csproj", "{649765AA-50C1-400E-9D41-4106D8E270CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Blazor", "SportStore.Blazor\SportStore.Blazor\SportStore.Blazor.csproj", "{61CA52EF-A9A4-4115-8BAF-765D7406D15B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Blazor.Client", "SportStore.Blazor\SportStore.Blazor.Client\SportStore.Blazor.Client.csproj", "{D5D21836-4EE5-47E7-AF27-25978D0307E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Blazor", "SportStore.Blazor\SportStore.Blazor.csproj", "{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,16 +29,15 @@ Global
 		{649765AA-50C1-400E-9D41-4106D8E270CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{649765AA-50C1-400E-9D41-4106D8E270CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{649765AA-50C1-400E-9D41-4106D8E270CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61CA52EF-A9A4-4115-8BAF-765D7406D15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61CA52EF-A9A4-4115-8BAF-765D7406D15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61CA52EF-A9A4-4115-8BAF-765D7406D15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61CA52EF-A9A4-4115-8BAF-765D7406D15B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5D21836-4EE5-47E7-AF27-25978D0307E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5D21836-4EE5-47E7-AF27-25978D0307E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5D21836-4EE5-47E7-AF27-25978D0307E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5D21836-4EE5-47E7-AF27-25978D0307E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA2CC042-B7C0-444F-A9AD-7FDFE8DB8ADA}
 	EndGlobalSection
 EndGlobal
