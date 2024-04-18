@@ -9,15 +9,19 @@
     <div class="row">
         <div class="my-3 col border border-1 border-primary">
             
-            <img src="/images/logo.png" height="100" width="100"/>
+            <Image ImageWidth="300"> Название картинки </Image>
+
 
 
             <EditForm class="m-2 p-2 border border-1 border-primary" EditContext="model" OnValidSubmit="Submit">
 
                 <ValidationSummary />
 
-                <InputText class="m-2 p-2" @bind-Value="user.Surname" placeholder="Фамилия" />
-                <InputText class="m-2 p-2" @bind-Value="user.Name" placeholder="Имя" />
+                <InputText class="m-2 p-2" @bind-Value="user.Surname" placeholder="Фамилия" @onchange="OnChange" @oninput="Change" />
+                <InputText class="m-2 p-2" @bind-Value:get="user.Name" @bind-Value:set = "SetNameUser"   placeholder="Имя" />
+
+                <input @bind-value="user.Name" @bind-value:event="oninput" placeholder="Name" />
+
                 <InputText class="m-2 p-2" @bind-Value="user.Patronymic" placeholder="Отчество" />
                 <InputText class="m-2 p-2" @bind-Value="user.Login" placeholder="Логин" />
                 <InputText class="m-2 p-2" @bind-Value="user.Password" placeholder="Пароль"/>
@@ -32,6 +36,8 @@
                 <p>
                     <button type="submit" class="m-2 p-2 btn btn-lg btn-primary">Отправить</button>
                 </p>
+
+
 
             </EditForm>
         </div>
@@ -68,5 +74,21 @@ else
         {
             nav.NavigateTo("/Auth");
         }
+    }
+
+    public void Change(ChangeEventArgs e)
+    {
+        Console.WriteLine($"Event Change Input: {e.Value}");
+    }
+
+    public void OnChange()
+    {
+        //Task.Delay(400);
+        Console.WriteLine("OnChange Event: {e.Value}");
+    }
+
+    public void SetNameUser(string value)
+    {
+        user.Name = $"Человек: {user.Name}";
     }
 }

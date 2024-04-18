@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Application", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Domen", "SportStore.Domen\SportStore.Domen.csproj", "{649765AA-50C1-400E-9D41-4106D8E270CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Blazor", "SportStore.Blazor\SportStore.Blazor.csproj", "{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Blazor", "SportStore.Blazor\SportStore.Blazor.csproj", "{72EDAF21-7813-4FBE-9D8C-9B86AAAA5F77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{205AB4FC-D304-49FF-9CC8-4EEE1919CB3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Infrastructure", "SportStore.Infrastructure\SportStore.Infrastructure.csproj", "{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Infrastructure", "SportStore.Infrastructure\SportStore.Infrastructure.csproj", "{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,17 @@
+﻿<img src="/images/logo.png" height="100" width="@ImageWidth" />
+@namespace SportStore.Blazor.Components
+
+
+@ChildContent
+
+@code {
+
+    [Parameter]
+    [EditorRequired]
+    public string ImageWidth { get; set; }
+
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}
