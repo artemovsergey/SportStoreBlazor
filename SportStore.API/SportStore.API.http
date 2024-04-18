@@ -1,6 +1,6 @@
-@SportStore.API_HostAddress = http://localhost:5149
+@SportStore.API_HostAddress = https://localhost:7214
 
-GET {{SportStore.API_HostAddress}}/weatherforecast/
+GET {{SportStore.API_HostAddress}}/api/Roles
 Accept: application/json
 
 ###
