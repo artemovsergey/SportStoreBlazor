@@ -2,8 +2,11 @@
 
 @inject HttpClient http
 @inject NavigationManager nav
+@using SportStore.ComponentsLib
 
 <PageTitle> Создание пользователя </PageTitle>
+
+<Component1></Component1>
 
 <div class="container">
     <div class="row">
@@ -18,7 +21,7 @@
                 <ValidationSummary />
 
                 <InputText class="m-2 p-2" @bind-Value="user.Surname" placeholder="Фамилия" @onchange="OnChange" @oninput="Change" />
-                <InputText class="m-2 p-2" @bind-Value:get="user.Name" @bind-Value:set = "SetNameUser"   placeholder="Имя" />
+                <InputText class="m-2 p-2" @bind-Value="user.Name" placeholder="Имя" />
 
                 <input @bind-value="user.Name" @bind-value:event="oninput" placeholder="Name" />
 
@@ -34,7 +37,8 @@
                 </InputSelect>
 
                 <p>
-                    <button type="submit" class="m-2 p-2 btn btn-lg btn-primary">Отправить</button>
+                    <button type="submit" class="m-2 p-2 btn btn-lg btn-primary"
+                            disabled="@(user.Name != "test")">Отправить</button>
                 </p>
 
 
@@ -89,6 +93,6 @@ else
 
     public void SetNameUser(string value)
     {
-        user.Name = $"Человек: {user.Name}";
+        user.Name = $"{user.Name}";
     }
 }
