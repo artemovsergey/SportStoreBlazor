@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Infrastructure", "SportStore.Infrastructure\SportStore.Infrastructure.csproj", "{69D6197D-108C-4690-B1C9-1AF6E20FEEA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.ComponentsLib", "SportStore.ComponentsLib\SportStore.ComponentsLib.csproj", "{CD4A3432-FFF2-4FEF-93E6-BD5D042F40BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.ComponentsLib", "SportStore.ComponentsLib\SportStore.ComponentsLib.csproj", "{CD4A3432-FFF2-4FEF-93E6-BD5D042F40BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

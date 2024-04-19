@@ -1,17 +1,22 @@
-﻿<img src="/images/logo.png" height="100" width="@ImageWidth" />
-@namespace SportStore.Blazor.Components
+﻿
+<img src="/images/logo.png" height="@ImageHeigt" width="100" />
 
+
+<input type="text" @bind-value="@ImageHeigt" @bind-value:event="oninput"  placeholder="Введите высоту" />
+
+<h1> Test </h1>
 
 @ChildContent
 
-@code {
+
+
+@code{
 
     [Parameter]
     [EditorRequired]
-    public string ImageWidth { get; set; }
+    public string ImageHeigt { get; set; } = "100";
 
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
 }
