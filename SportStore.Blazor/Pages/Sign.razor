@@ -1,19 +1,10 @@
 ﻿@page "/Sign"
+<PageTitle> Создание пользователя </PageTitle>
 
 @inject HttpClient http
 @inject NavigationManager nav
 @using SportStore.Blazor.Components
 @using SportStore.ComponentsLib
-
-<PageTitle> Создание пользователя </PageTitle>
-
-
-
-<Alert Show="true">
-    <span class="oi oi-check mr-2" aria-hidden="true"></span>
-    <strong>Blazor is so cool!</strong>
-</Alert>
-
 
 
 
@@ -21,11 +12,6 @@
     <div class="row">
         <div class="my-3 col border border-1 border-primary">
             
-
-
-
-
-    
             <EditForm class="m-2 p-2 border border-1 border-primary" EditContext="model" OnValidSubmit="Submit">
 
                 <ValidationSummary />
@@ -50,8 +36,6 @@
                     <button type="submit" class="m-2 p-2 btn btn-lg btn-primary"
                             disabled="@(user.Name != "test")">Отправить</button>
                 </p>
-
-
 
             </EditForm>
         </div>
