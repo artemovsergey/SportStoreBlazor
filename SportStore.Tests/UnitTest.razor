@@ -1,0 +1,24 @@
+@using Bunit
+@inherits Bunit.TestContext
+
+@code {
+
+    [Fact]
+    public void RenderCorrectlyWithInitialZero()
+    {
+     var cut = Render(@<Home />);
+      cut.Find("p")
+     .MarkupMatches(@<p>Current count: 0</p>);
+     }
+
+    [Fact]
+    public void IncrementCounterWhenButtonIsClicked()
+    {
+     var cut = Render(@<TwoWayCounter CurrentCount="1" Increment="2"/>);
+     cut.Find("button").Click();
+            cut.Find("p")
+            .MarkupMatches(@<p>Current count: 3</p>
+     );
+    }
+
+}

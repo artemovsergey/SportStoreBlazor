@@ -1,0 +1,6 @@
+@SportStore.APIWithDocker_HostAddress = http://localhost:5211
+
+GET {{SportStore.APIWithDocker_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
