@@ -1,0 +1,68 @@
+﻿@inject NavigationManager NavManager
+
+
+<div class="filters">
+    <label for="_login">Login</label>
+    <input id="login"
+           type="search"
+           class="form-control"
+           @bind="_login" />
+
+    <label for="_password">Password</label>
+    <input id="password"
+           type="search"
+           class="form-control"
+           @bind="_password" />
+
+    <button class="btn btn-outline-primary"
+            @onclick="FilterSearchResults">
+        Filter
+    </button>
+    <button class="btn btn-outline-secondary"
+            @onclick="ClearSearchFilter">
+        Clear
+    </button>
+</div>
+
+
+@code{
+    private string _login;
+    private string _password;
+
+    [Parameter, EditorRequired]
+    public string SearchTerm { get; set; } = default!;
+
+    [Parameter]
+    public string Login { get; set; }
+
+    [Parameter]
+    public string Password { get; set; }
+
+    //private void FilterSearchResults() => NavManager.NavigateTo($"/search/{SearchTerm}/maxlength/{_maxLength}");
+
+    protected override void OnInitialized()
+    {
+        _login = Login ?? "";
+        _password = Password ?? "";
+    }
+
+    private void FilterSearchResults()
+    {
+        var uriWithQuerystring = NavManager.GetUriWithQueryParameters(
+
+        new Dictionary<string, object?>()
+        {
+            [nameof(Search.Login)] = _login == "" ? null : _login,
+            [nameof(Search.Password)] = _password == "" ? null : _password
+        });
+
+        NavManager.NavigateTo(uriWithQuerystring);
+    }
+
+    private void ClearSearchFilter()
+    {
+        _login = "";
+        _password = "";
+        NavManager.NavigateTo($"/search/{SearchTerm}");
+    }
+}

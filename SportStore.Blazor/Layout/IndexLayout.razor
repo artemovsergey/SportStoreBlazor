@@ -1,6 +1,14 @@
-﻿namespace SportStore.Blazor.Layout;
+﻿@inherits  LayoutComponentBase
 
-public class IndexLayout_razor
-{
-    
-}
+<nav class="navbar mb-5 bg-body-tertiary shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            SportStore
+        </a>
+    </div>
+</nav>
+
+<div class="container mt-5 mb-5">
+    @Body
+</div>

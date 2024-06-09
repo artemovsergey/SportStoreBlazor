@@ -1,0 +1,41 @@
+﻿<div class="card shadow" style="width: 18rem;">
+    <img src="images/logo.png" class="card-img-top" alt="@u.Name">
+    <div class="card-body">
+        <h5 class="card-title">@u.Surname</h5>
+        <h6 class="card-subtitle mb-3 text-muted">
+            <span class="oi oi-map-marker"></span>
+            @u.Password
+        </h6>
+        <div class="d-flex justify-content-between">
+            <span>
+                <span class="oi oi-clock mr-2"></span>
+                @u.Patronymic
+            </span>
+            <span>
+                <span class="oi oi-infinity mr-2"></span>
+                Роль: @u.Role?.Name
+            </span>
+        </div>
+    </div>
+
+    <button class="btn btn-primary"
+            title="View"
+            @onclick="@(() => OnSelected?.Invoke(u))">
+            <i class="bi bi-binoculars"></i>
+    </button>
+</div>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public User u { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public Action<User> OnSelected { get; set; }
+
+    // alternate
+
+    [Parameter]
+    public EventCallback<User> OnSelected2 { get; set; }
+
+}

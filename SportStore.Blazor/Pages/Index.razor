@@ -1,6 +1,8 @@
 ﻿@page "/Index"
 @page "/"
 
+@layout IndexLayout
+
 <PageTitle> Главная страница </PageTitle>
 
 @inject HttpClient http
@@ -11,17 +13,23 @@
 }
 else
 {
-    
-    foreach (var u in Users)
-    {
-        <h3> @u.Name</h3>
-    }
+
+        <UserDetail User="_selectedUser" />
+
+
+        <div class="grid">
+             @foreach (var u in Users)
+             {
+            <UserCard u="u" OnSelected="HandleUserSelected" />
+             }
+         </div>
 
 }
 
 
 @code {
     IEnumerable<User> Users = new List<User>();
+    private User? _selectedUser;
 
     protected override async Task OnInitializedAsync()
     {
@@ -29,11 +37,20 @@ else
         {
             Users = await http.GetFromJsonAsync<IEnumerable<User>>($"{http.BaseAddress}api/Users");
         }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading trail data: {ex.Message}");
+        } 
         catch (Exception ex)
         {
             Console.WriteLine($"{ex.InnerException.Message}");
         }
+    }
 
+    private void HandleUserSelected(User user)
+    {
+        _selectedUser = user;
+        StateHasChanged();
     }
 
 

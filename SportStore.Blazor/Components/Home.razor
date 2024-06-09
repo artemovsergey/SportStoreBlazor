@@ -1,8 +1,10 @@
-﻿@page "/Home"
+﻿
+@page "/Home"
 <PageTitle>Home</PageTitle>
-@using SportStore.ComponentsLib
 
 <h1>Hello World</h1>
+
+
 
 <!--
 <button width="100" height="50" @onclick="GetAlert"> Открыть </button>
@@ -15,7 +17,6 @@
 
 @code {
     public bool ShowAlert { get; set; } = false;
-    public Alert alert { get; set; }
 
 
     public void GetAlert()
@@ -29,7 +30,6 @@
         //alert.Close();
         ShowAlert = false;
     }
-
 
 
 }

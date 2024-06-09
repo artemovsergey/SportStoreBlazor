@@ -27,21 +27,21 @@ public class UsersController : ControllerBase
         return Ok(await _repo.GetUser(id));
     }
 
-    [HttpPost]
-    public async Task<IActionResult> PostUser([FromBody] User user)
-    {
+    //[HttpPost]
+    //public async Task<IActionResult> PostUser([FromBody] User user)
+    //{
 
-        //valid
+    //    //valid
 
-        if(user == null)
-        {
-            return BadRequest("user equals null");
-        }
+    //    if(user == null)
+    //    {
+    //        return BadRequest("user equals null");
+    //    }
 
-        await _repo.Create(user);
+    //    await _repo.Create(user);
     
-        return CreatedAtAction("GetUser", new { id = user.Id }, user);
-    }
+    //    return CreatedAtAction("GetUser", new { id = user.Id }, user);
+    //}
 
 
 

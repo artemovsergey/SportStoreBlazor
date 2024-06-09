@@ -1,0 +1,110 @@
+﻿@page "/search/{SearchTerm}"
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<!--
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Search</li>
+    </ol>
+</nav>
+-->
+
+
+<h3 class="mt-5 mb-4">Search results for @SearchTerm</h3>
+
+
+<Filter SearchTerm="@SearchTerm" />
+
+
+@if(_searchResults == null)
+{
+ <p>Loading search results...</p>
+}
+else
+{
+    <UserDetail User="_selectedUser" Login="Login" Password="Password" />
+
+     <div class="grid">
+         @foreach (var user in _searchResults)
+         {
+            <UserCard u="user" OnSelected="HandleTrailSelected" />
+         }
+     </div>
+}
+
+@code {
+
+    private IEnumerable<User>? _searchResults;
+    private IEnumerable<User> _cachedSearchResults = Array.Empty<User>();
+    private User? _selectedUser;
+
+    [Parameter]
+    public string SearchTerm { get; set; } = default!;
+
+    [Parameter, SupplyParameterFromQuery] 
+    public string Login { get; set; }
+
+    [Parameter, SupplyParameterFromQuery] 
+    public string Password { get; set; }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var allUsers = await Http.GetFromJsonAsync<IEnumerable<User>>($"{Http.BaseAddress}api/Users");
+            _searchResults = allUsers!.Where(x => x.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase) || x.Login.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase));
+            _cachedSearchResults = _searchResults;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading trail data:{ex.Message}");
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        // if (_cachedSearchResults.Any() && MaxLength.HasValue)
+        // {
+        //     _searchResults = _cachedSearchResults.Where(x => x.Name.Length <= MaxLength.Value);
+        // }
+        // else if (_cachedSearchResults.Any() && MaxLength is null)
+        // {
+        //     _searchResults = _cachedSearchResults;
+        // }
+        UpdateFilters();
+    }
+
+
+    private void UpdateFilters()
+    {
+        var filters = new List<Func<User, bool>>();
+
+        if(Login is not null){
+            filters.Add(x => x.Role.Name == Login);
+        }
+
+        if(Password is not null){
+            filters.Add(x => x.Password == Password);
+        }
+
+        if (filters.Any())
+        {
+            _searchResults = _cachedSearchResults.Where(user => filters.All(filter => filter(user)));
+        }
+        else
+        {
+            _searchResults = _cachedSearchResults;
+        }
+    }
+
+
+    private void HandleTrailSelected(User user) => _selectedUser = user;
+
+}
