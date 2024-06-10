@@ -1,7 +1,9 @@
 ﻿@page "/Index"
 @page "/"
+@using SportStore.Application.Requests
 
 @layout IndexLayout
+@inject IMediator mediatr
 
 <PageTitle> Главная страница </PageTitle>
 
@@ -35,7 +37,9 @@ else
     {
         try
         {
-            Users = await http.GetFromJsonAsync<IEnumerable<User>>($"{http.BaseAddress}api/Users");
+            //Users = await http.GetFromJsonAsync<IEnumerable<User>>($"{http.BaseAddress}api/Users");
+            var response = await mediatr.Send(new GetUsersRequest());
+            Users = response.Users;
         }
         catch (HttpRequestException ex)
         {

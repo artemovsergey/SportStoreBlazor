@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SportStore.Application.Requests;
 using SportStore.Domen.Models;
 using SportStore.Infrastructure;
-using System.Diagnostics;
 
 namespace SportStore.API.ApiEndpoints;
 
@@ -14,7 +13,6 @@ public class AddUserEndpoint : EndpointBaseAsync.WithRequest<AddUserRequest>.Wit
     {
         _database = database;
     }
-
 
     [HttpPost(AddUserRequest.RouteTemplate)]
     public override async Task<ActionResult<int>>HandleAsync(AddUserRequest request,CancellationToken cancellationToken = default)

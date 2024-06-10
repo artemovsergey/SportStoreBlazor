@@ -31,7 +31,7 @@ else if (_errorMessage is not null)
 }
 
 
-<EditForm Model="user" OnValidSubmit="SubmitForm">
+<EditForm OnValidSubmit="SubmitForm" EditContext="_editContext">
 
     <ValidationSummary />
     <FluentValidationValidator />
@@ -165,10 +165,17 @@ else if (_errorMessage is not null)
     public User user = new();
     private bool _submitSuccessful;
     private string? _errorMessage;
+    private EditContext _editContext = default!;
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(user);
+        _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
+    }
 
 
     public async Task SubmitForm(){
-       Console.WriteLine("Отправка формы!");
+        Console.WriteLine("Отправка формы!");
 
         var response = await Mediator.Send(new AddUserRequest(user));
         if (response.userId == -1)

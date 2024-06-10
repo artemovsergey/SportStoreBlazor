@@ -15,11 +15,11 @@ public class UsersController : ControllerBase
         _repo = repo;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetUsers()
-    {
-        return Ok(await _repo.GetUsers());
-    }
+    //[HttpGet]
+    //public async Task<IActionResult> GetUsers()
+    //{
+    //    return Ok(await _repo.GetUsers());
+    //}
 
     [HttpGet("{id}")]
     public async Task<ActionResult<User>> GetUser([FromRoute] int id)
