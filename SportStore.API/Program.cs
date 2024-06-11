@@ -5,6 +5,7 @@ using SportStore.Infrastructure;
 using System.Text.Json.Serialization;
 using FluentValidation.AspNetCore;
 using System.Reflection;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),@"Images")),
+    RequestPath = new Microsoft.AspNetCore.Http.PathString("/Images")
+});
+
 
 app.UseHttpsRedirection();
 app.MapHub<UserHub>("/test");

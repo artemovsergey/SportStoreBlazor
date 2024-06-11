@@ -62,16 +62,22 @@
 
   <ItemGroup>
     <Watch Remove="components\FormSection.razor.scss" />
+    <Watch Remove="components\InputTime.razor.scss" />
     <Watch Remove="pages\Filter.razor.scss" />
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\InputTime.razor" />
     <_ContentIncludedByDefault Remove="Components\UserCard.razor" />
     <_ContentIncludedByDefault Remove="Pages\AddUser.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Pages\AddUser.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\InputTime.razor" />
   </ItemGroup>
 
 </Project>

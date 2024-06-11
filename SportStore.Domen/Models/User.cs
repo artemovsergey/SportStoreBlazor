@@ -8,7 +8,7 @@ public class User
     public string? Patronymic { get; set; } = String.Empty;
     public string Login { get; set; } = String.Empty;
     public string Password { get; set; } = String.Empty;
-    
+    public string Image { get; set; } = String.Empty;
     public int RoleId { get; set; }
     public Role? Role { get; set; }
 

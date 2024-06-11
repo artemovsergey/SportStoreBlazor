@@ -140,6 +140,29 @@ else if (_errorMessage is not null)
         </div>
     </FormSection>
 
+    <FormSection Title="Custom component"
+                 HelpText="Custom component ImputTime">
+
+                <label for="trailTime" class="font-weight-bold text-secondary"> Time</label>
+                <InputTime @bind-Value="user.Id" />
+
+                 <ValidationMessage For="@(() => user.Id)" />
+
+     </FormSection>
+
+    <FormSection Title="Изображение"
+                 HelpText="Компонент InputFile">
+
+        <label for="userImage" class="font-weight-bold text-secondary">
+            Image
+        </label>
+        <InputFile OnChange="LoadTrailImage" class="form-control-file"
+                   id="trailImage" accept=".png,.jpg,.jpeg" />
+
+        <ValidationMessage For="@(() => user.Id)" />
+
+    </FormSection>
+
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
@@ -185,10 +208,50 @@ else if (_errorMessage is not null)
             return;
         }
 
-         user = new();
+        if (_userImage is null)
+        {
+            _submitSuccessful = true;
+            ResetForm();
+            return;
+        }
+
+        await ProcessImage(response.userId);
+
+
+
+
+        user = new();
         _errorMessage = null;
         _submitSuccessful = true;
 
     }
+
+    private IBrowserFile? _userImage;
+
+    private void LoadTrailImage(InputFileChangeEventArgs e) => _userImage = e.File;
+
+    private void ResetForm()
+    {
+        user = new User();
+        _editContext = new EditContext(user);
+        _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
+        _userImage = null;
+    }
+
+    private async Task ProcessImage(int trailId)
+    {
+        var imageUploadResponse = await Mediator.Send(new UploadUserImageRequest(trailId, _userImage));
+        if (string.IsNullOrWhiteSpace(imageUploadResponse.ImageName))
+        {
+            _errorMessage = "Your trail was saved,but there was a problem uploading the image.";
+            return;
+        }
+        _submitSuccessful = true;
+        ResetForm();
+    }
+
+}
+
+
 
 }
