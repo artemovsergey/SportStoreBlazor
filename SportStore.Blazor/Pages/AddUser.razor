@@ -26,7 +26,7 @@
         if (response.userId == -1)
         {
             _submitSuccessful = false;
-            _errorMessage = "There was a problem saving your trail.";
+            _errorMessage = "There was a problem saving your User.";
             StateHasChanged();
             return;
         }
@@ -49,12 +49,12 @@
         StateHasChanged();
     }
 
-    private async Task<bool> ProcessImage(int trailId, IBrowserFile trailImage)
+    private async Task<bool> ProcessImage(int UserId, IBrowserFile UserImage)
     {
-        var imageUploadResponse = await Mediator.Send(new UploadUserImageRequest(trailId, trailImage));
+        var imageUploadResponse = await Mediator.Send(new UploadUserImageRequest(UserId, UserImage));
         if (string.IsNullOrWhiteSpace(imageUploadResponse.ImageName))
         {
-            _errorMessage = "Your trail was saved, but there was aproblem uploading the image.";
+            _errorMessage = "Your User was saved, but there was aproblem uploading the image.";
             return false;
         }
 

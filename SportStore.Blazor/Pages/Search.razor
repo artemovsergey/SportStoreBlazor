@@ -32,7 +32,7 @@ else
      <div class="grid">
          @foreach (var user in _searchResults)
          {
-            <UserCard u="user" OnSelected="HandleTrailSelected" />
+            <UserCard u="user" OnSelected="HandleUserSelected" />
          }
      </div>
 }
@@ -64,7 +64,7 @@ else
         }
         catch (HttpRequestException ex)
         {
-            Console.WriteLine($"There was a problem loading trail data:{ex.Message}");
+            Console.WriteLine($"There was a problem loading User data:{ex.Message}");
         }
     }
 
@@ -105,6 +105,6 @@ else
     }
 
 
-    private void HandleTrailSelected(User user) => _selectedUser = user;
+    private void HandleUserSelected(User user) => _selectedUser = user;
 
 }

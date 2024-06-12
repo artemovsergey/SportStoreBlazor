@@ -16,7 +16,7 @@ public class UploadUserImageHandler : IRequestHandler<UploadUserImageRequest, Up
 
         using var content = new MultipartFormDataContent();
         content.Add(new StreamContent(fileContent), "image", request.File.Name);
-        var response = await _httpClient.PostAsync(UploadUserImageRequest.RouteTemplate.Replace("{trailId}", request.UserId.ToString()), content, cancellationToken);
+        var response = await _httpClient.PostAsync(UploadUserImageRequest.RouteTemplate.Replace("{UserId}", request.UserId.ToString()), content, cancellationToken);
         if (response.IsSuccessStatusCode)
         {
             var fileName = await response.Content.ReadAsStringAsync(cancellationToken: cancellationToken);

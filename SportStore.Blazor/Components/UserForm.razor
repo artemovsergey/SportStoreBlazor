@@ -6,7 +6,7 @@
     <FluentValidationValidator />
 
 
-    <FormSection Title="Basic Details" HelpText="This information is used to identify the trail and can be searched to help hikers find it.">
+    <FormSection Title="Basic Details" HelpText="This information is used to identify the User and can be searched to help hikers find it.">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -37,7 +37,7 @@
             </div>
         </div>
     </FormSection>
-    <FormSection Title="Difficulty" HelpText="Help other hikers out by telling them the length of the trail is how long it might take them.">
+    <FormSection Title="Difficulty" HelpText="Help other hikers out by telling them the length of the User is how long it might take them.">
 
         <div class="row">
             <div class="col-3">
@@ -51,7 +51,7 @@
 
     </FormSection>
     <FormSection Title="Items"
-                 HelpText="Route instructions are a guide for the trail.This helps hikers new to the trail stay on track.">
+                 HelpText="Route instructions are a guide for the User.This helps hikers new to the User stay on track.">
         @{
             var i = 0;
         }
@@ -112,7 +112,7 @@
     <FormSection Title="Custom component"
                  HelpText="Custom component ImputTime">
 
-        <label for="trailTime" class="font-weight-bold text-secondary"> Time</label>
+        <label for="UserTime" class="font-weight-bold text-secondary"> Time</label>
         <InputTime @bind-Value="user.Id" />
 
         <ValidationMessage For="@(() => user.Id)" />
@@ -125,8 +125,26 @@
         <label for="userImage" class="font-weight-bold text-secondary">
             Image
         </label>
-        <InputFile OnChange="LoadTrailImage" class="form-control-file"
-                   id="trailImage" accept=".png,.jpg,.jpeg" />
+        
+        
+        @if (string.IsNullOrWhiteSpace(user.Image))
+        {
+            <InputFile OnChange="LoadUserImage" class="form-control-file" id="UserImage"
+                       accept=".png,.jpg,.jpeg" />
+        }
+        else
+        {
+            <div class="card bg-dark text-white">
+                <img src="https://localhost:7214/images/@user.Image" />
+                <div class="card-img-overlay">
+                    <button class="btn btn-primary btn-sm"
+                            @onclick="RemoveUserImage">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        }
+        
 
         <ValidationMessage For="@(() => user.Id)" />
 
@@ -163,6 +181,9 @@
     [Parameter]
     public Func<User, IBrowserFile?, Task> OnSubmit { get; set; }
 
+    [Parameter]
+    public User? User { get; set; }
+
     public void ResetForm()
     {
         user = new User();
@@ -173,12 +194,45 @@
 
     protected override void OnInitialized()
     {
+        // _editContext = new EditContext(user);
+        // _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
+    }
+
+    protected override void OnParametersSet()
+    {
         _editContext = new EditContext(user);
         _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
+        if (User != null)
+        {
+            user.Id = User.Id;
+            user.Name = User.Name;
+            user.Surname = User.Surname;
+            user.Login = User.Login;
+            user.Image = User.Image;
+            user.Password = User.Password;
+            user.Patronymic = User.Patronymic;
+            user.Items.Clear();
+            user.Items.AddRange(user.Items.Select(ri => new Item
+                {
+                    Number = ri.Number,
+                    Title = ri.Title
+                }));
+        }
     }
+
 
     private async Task SubmitForm() => await OnSubmit(user, _userImage);
 
-    private void LoadTrailImage(InputFileChangeEventArgs e) => _userImage = e.File;
+    private void LoadUserImage(InputFileChangeEventArgs e) {
 
+        _userImage = e.File;
+        user.ImageAction = ImageAction.Add;
+        //StateHasChanged();
+    }
+
+    private void RemoveUserImage()
+    {
+        user.Image = null;
+        user.ImageAction = ImageAction.Remove;
+    }
 }

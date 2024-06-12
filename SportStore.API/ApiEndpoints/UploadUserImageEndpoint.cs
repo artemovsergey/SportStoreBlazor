@@ -5,6 +5,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SportStore.Application.Requests;
 using SportStore.Infrastructure;
+using System.Diagnostics;
 
 namespace SportStore.API.ApiEndpoints;
 
@@ -17,12 +18,12 @@ public class UploadUserImageEndpoint : EndpointBaseAsync.WithRequest<int>.WithAc
     }
 
     [HttpPost(UploadUserImageRequest.RouteTemplate)]
-    public override async Task<ActionResult<string>> HandleAsync([FromRoute] int trailId, CancellationToken cancellationToken = default)
+    public override async Task<ActionResult<string>> HandleAsync([FromRoute] int UserId, CancellationToken cancellationToken = default)
     {
-        var trail = await _database.Users.SingleOrDefaultAsync(x => x.Id == trailId,cancellationToken);
-        if (trail is null)
+        var User = await _database.Users.SingleOrDefaultAsync(x => x.Id == UserId,cancellationToken);
+        if (User is null)
         {
-            return BadRequest("Trail does not exist.");
+            return BadRequest("User does not exist.");
         }
         var file = Request.Form.Files[0];
         if (file.Length == 0)
@@ -39,8 +40,14 @@ public class UploadUserImageEndpoint : EndpointBaseAsync.WithRequest<int>.WithAc
         using var image = Image.Load(file.OpenReadStream());
         image.Mutate(x => x.Resize(resizeOptions));
         await image.SaveAsJpegAsync(saveLocation,cancellationToken: cancellationToken);
-        trail.Image = filename;
+
+        if (!string.IsNullOrWhiteSpace(User.Image))
+        {
+            System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "Images", User.Image));
+        }
+
+        User.Image = filename;
         await _database.SaveChangesAsync(cancellationToken);
-        return Ok(trail.Image);
+        return Ok(User.Image);
     }
 }
