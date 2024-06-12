@@ -1,0 +1,85 @@
+﻿@page "/Home"
+
+
+
+@using SportStore.Application.Requests
+@inject IMediator mediatr
+@inject NavigationManager NavManager
+
+<UserDetail User="_selectedUser" />
+
+<ViewSwitcher>
+
+     <GridTemplate>
+             <div class="grid">
+                 @foreach (var user in Users)
+                 {
+                     <UserCard u="@user" OnSelected="HandleUserSelected" />
+                 }
+            </div>
+     </GridTemplate>
+
+     <TableTemplate>
+         <table class="table table-striped">
+             <thead>
+                 <tr>
+                     <th>Name</th>
+                     <th>Location</th>
+                     <th>Length</th>
+                     <th>Time</th>
+                     <th></th>
+                 </tr>
+             </thead>
+             <tbody>
+             @foreach (var user in Users)
+             {
+             <tr>
+                        <th scope="col">@user.Name</th>
+                        <td>@user.Surname</td>
+                        <td>@(user.Patronymic)km</td>
+                        <td>@user.Login</td>
+                 <td class="text-right">
+                 
+                     <button @onclick="@(() =>HandleUserSelected(user))" title="View" class="btn btn-primary">
+                    <i class="bi bi-binoculars"></i>
+                 </button>
+                 
+                 <button @onclick="@(() => NavManager.NavigateTo($"/edit-User/{user.Id}"))" title="Edit" class="btn btn-outline-secondary">
+                    <i class="bi bi-pencil"></i>
+                 </button>
+                 </td>
+             </tr>
+             }
+             </tbody>
+         </table>
+     </TableTemplate>
+</ViewSwitcher>
+
+@code {
+    IEnumerable<User> Users = new List<User>();
+    private User? _selectedUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            //Users = await http.GetFromJsonAsync<IEnumerable<User>>($"{http.BaseAddress}api/Users");
+            var response = await mediatr.Send(new GetUsersRequest());
+            Users = response.Users;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading User data: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"{ex.InnerException.Message}");
+        }
+    }
+
+    private void HandleUserSelected(User user)
+    {
+        _selectedUser = user;
+        StateHasChanged();
+    }
+}                

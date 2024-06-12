@@ -10,7 +10,7 @@
 	</NpmLastInstall>
 	  
   </PropertyGroup>
-
+		
   <ItemGroup>
     <PackageReference Include="Blazored.FluentValidation" Version="2.1.0" />
     <PackageReference Include="MediatR" Version="12.3.0" />
@@ -54,6 +54,7 @@
     <ProjectReference Include="..\SportStore.Application\SportStore.Application.csproj" />
     <ProjectReference Include="..\SportStore.Domen\SportStore.Domen.csproj" />
     <ProjectReference Include="..\SportStore.Infrastructure\SportStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\SportStore.RCL\SportStore.RCL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

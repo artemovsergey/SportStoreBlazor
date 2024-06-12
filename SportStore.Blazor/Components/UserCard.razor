@@ -1,4 +1,6 @@
-﻿<div class="card shadow" style="width: 18rem;">
+﻿@inject NavigationManager NavManager
+
+<div class="card shadow" style="width: 18rem;">
     <img src="images/logo.png" class="card-img-top" alt="@u.Name">
     <div class="card-body">
         <h5 class="card-title">@u.Surname</h5>
@@ -23,6 +25,11 @@
             @onclick="@(() => OnSelected?.Invoke(u))">
             <i class="bi bi-binoculars"></i>
     </button>
+
+    <button @onclick="@(() => NavManager.NavigateTo($"/edit-User/{u.Id}"))" title="Edit" class="btn btn-outline-secondary">
+        <i class="bi bi-pencil"></i>
+    </button>
+
 </div>
 
 
