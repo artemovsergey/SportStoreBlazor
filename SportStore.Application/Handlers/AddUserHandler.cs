@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using SportStore.Application.Requests;
-using SportStore.Domen.Models;
 using System.Net.Http.Json;
 
 namespace SportStore.Application.Handlers;

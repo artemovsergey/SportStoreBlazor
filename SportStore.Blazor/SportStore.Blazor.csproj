@@ -69,6 +69,7 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Components\InputTime.razor" />
     <_ContentIncludedByDefault Remove="Components\UserCard.razor" />
+    <_ContentIncludedByDefault Remove="Components\UserForm.razor" />
     <_ContentIncludedByDefault Remove="Pages\AddUser.razor" />
   </ItemGroup>
 
@@ -78,6 +79,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Components\InputTime.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\UserForm.razor" />
   </ItemGroup>
 
 </Project>
