@@ -22,7 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.Tests", "SportStore.Tests\SportStore.Tests.csproj", "{F877077F-F2D6-4D57-81CA-71D6D0371133}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.RCL", "SportStore.RCL\SportStore.RCL.csproj", "{4132D6E2-E28F-4612-BC6D-F9BD2A4BBF13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportStore.RCL", "SportStore.RCL\SportStore.RCL.csproj", "{4132D6E2-E28F-4612-BC6D-F9BD2A4BBF13}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "sportstore.react", "SportStore.React\sportstore.react.esproj", "{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,12 @@ Global
 		{4132D6E2-E28F-4612-BC6D-F9BD2A4BBF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4132D6E2-E28F-4612-BC6D-F9BD2A4BBF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4132D6E2-E28F-4612-BC6D-F9BD2A4BBF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC2576C-C10A-4AC6-8A51-6B4C60A7DB2A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

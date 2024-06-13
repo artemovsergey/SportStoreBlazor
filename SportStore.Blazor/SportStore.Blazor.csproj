@@ -86,4 +86,8 @@
     <UpToDateCheckInput Remove="Components\UserForm.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>
