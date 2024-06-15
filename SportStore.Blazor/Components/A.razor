@@ -1,0 +1,22 @@
+﻿@page "/a"
+@using SportStore.Blazor.State
+@inject AppState appState
+@inject NavigationManager nav
+
+<button class="btn btn-success" @onclick="(() => NavToB() )">Перейти к b</button>
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        var user = new User() { Name = "123" };
+        appState.SaveUser(user);
+      
+    }
+
+    public void NavToB()
+    {
+        nav.NavigateTo("b");
+    }
+}
+

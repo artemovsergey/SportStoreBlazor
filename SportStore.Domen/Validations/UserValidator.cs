@@ -18,6 +18,9 @@ public class UserValidator : AbstractValidator<User>
 
         RuleFor(x => x.Items).NotEmpty().WithMessage("Please add a route instruction");
 
+        RuleFor(x => x.Waypoints).NotEmpty().WithMessage("Please add a waypoint");
+
+
         Console.WriteLine("Работает валидатор UserValidator!");
     }
 }

@@ -14,10 +14,13 @@ public class User
 
     public ImageAction ImageAction { get; set; }
 
+    public List<WaypointDto>? Waypoints { get; set; } = new List<WaypointDto>();
 
     public List<Item> Items { get; set; } = new List<Item>();
 
 }
+
+public record WaypointDto(int Id, decimal Latitude, decimal Longitude);
 
 public enum ImageAction
 {

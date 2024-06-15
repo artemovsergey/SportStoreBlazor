@@ -1,0 +1,10 @@
+.map-wrapper {
+    position: relative;
+
+    .controls {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+}

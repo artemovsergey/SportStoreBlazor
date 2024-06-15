@@ -1,13 +1,15 @@
 ﻿@page "/Index"
 @page "/"
 @using SportStore.Application.Requests
-
+@using SportStore.Blazor.State
 @layout IndexLayout
 @inject IMediator mediatr
-
+@inject NavigationManager nav
 <PageTitle> Главная страница </PageTitle>
-
 @inject HttpClient http
+
+
+<button class="btn btn-success p-2 mb-5" @onclick="NavToAddUser">Добавить пользователя</button>
 
 @if(Users.Count() == 0)
 {
@@ -55,6 +57,12 @@ else
     {
         _selectedUser = user;
         StateHasChanged();
+    }
+
+
+    public void NavToAddUser()
+    {
+        nav.NavigateTo("addUser");
     }
 
 

@@ -1,10 +1,14 @@
 ﻿@using SportStore.Application.Requests
+@using SportStore.Blazor.State
+@inject AppState AppState
+
+<h1> AppState из UserForm: @AppState.GetUser().Name </h1>
 
 <EditForm OnValidSubmit="SubmitForm" EditContext="_editContext">
 
     <ValidationSummary />
     <FluentValidationValidator />
-
+    <FormStateTracker />
 
     <FormSection Title="Basic Details" HelpText="This information is used to identify the User and can be searched to help hikers find it.">
         <div class="row">
@@ -124,6 +128,17 @@
 
     </FormSection>
 
+    <FormSection Title="RouteMap"
+                 HelpText="RouteMap">
+
+        <label for="Waypoints" class="font-weight-bold text-secondary"> RouteMap</label>
+
+        <InputRouteMap @bind-Value="user.Waypoints" />
+        <ValidationMessage For="@(() => user.Waypoints)" />
+
+    </FormSection>
+
+
     <FormSection Title="Изображение"
                  HelpText="Компонент InputFile">
 
@@ -191,6 +206,8 @@
 
     public void ResetForm()
     {
+        //AppState.ClearUser();
+
         user = new User();
         _editContext = new EditContext(user);
         _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
@@ -205,8 +222,9 @@
 
     protected override void OnParametersSet()
     {
-        _editContext = new EditContext(user);
-        _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
+
+        Console.WriteLine($"GetUser: {AppState.GetUser().Name}");
+
         if (User != null)
         {
             user.Id = User.Id;
@@ -216,13 +234,27 @@
             user.Image = User.Image;
             user.Password = User.Password;
             user.Patronymic = User.Patronymic;
-            user.Items.Clear();
-            user.Items.AddRange(user.Items.Select(ri => new Item
-                {
-                    Number = ri.Number,
-                    Title = ri.Title
-                }));
+            // user.Items.Clear();
+            // user.Items.AddRange(user.Items.Select(ri => new Item
+            //     {
+            //         Number = ri.Number,
+            //         Title = ri.Title
+            //     }));
+
+            user.Waypoints.Clear();
+            user.Waypoints.AddRange(user.Waypoints.Select(wp => new
+            WaypointDto(wp.Id, wp.Latitude, wp.Longitude)));
+
         }
+        else
+        {
+            user = AppState.GetUser();
+            StateHasChanged();
+        }
+
+
+        _editContext = new EditContext(user);
+        _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
     }
 
 

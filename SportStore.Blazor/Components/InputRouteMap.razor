@@ -1,0 +1,45 @@
+@using SportStore.RCL
+
+@inherits InputBase<List<WaypointDto>>
+
+<style>
+
+    .is-invalid {
+        border: 1px solid #dc3545;
+    }
+
+</style>
+
+
+<div class="@CssClass">
+    <RouteMap Width="100%" OnWaypointAdded="AddWaypoint"
+              OnWaypointDeleted="DeleteWaypoint"
+              Waypoints="_waypoints" />
+</div>
+
+@code {
+    private List<LatLong> _waypoints = new List<LatLong>();
+    
+    protected override void OnParametersSet()
+    {
+        if (CurrentValue?.Count > 0)
+        {
+            _waypoints.Clear();
+            _waypoints.AddRange(CurrentValue.Select(x => new LatLong(x.Id, x.Latitude, x.Longitude)));
+        }
+    }
+
+    protected override bool TryParseValueFromString(string? value, out List<WaypointDto> result,out string validationErrorMessage) => throw new NotImplementedException();
+    
+    private void AddWaypoint(LatLong waypoint)
+    {
+        _waypoints.Add(waypoint);
+        CurrentValue?.Add(new WaypointDto(waypoint.Id, waypoint.Lat, waypoint.Lng));
+    }
+
+    private void DeleteWaypoint(LatLong waypoint)
+    {
+        _waypoints.Remove(waypoint);
+        CurrentValue?.Remove(new WaypointDto(waypoint.Id, waypoint.Lat, waypoint.Lng));
+    }
+}

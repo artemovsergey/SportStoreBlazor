@@ -7,8 +7,12 @@ using SportStore.Domen.Models;
 using SportStore.Domen.Validations;
 using System.Reflection;
 using SportStore.Application;
+using SportStore.Blazor.State;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
@@ -16,10 +20,13 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddScoped<IValidator<User>, UserValidator>();
 
+
 var assembly = AppDomain.CurrentDomain.Load("SportStore.Application");
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(
                             Assembly.GetExecutingAssembly(), assembly));
 
 builder.Services.AddApplicationServices();
+
+builder.Services.AddSingleton<AppState>();
 
 await builder.Build().RunAsync();

@@ -1,10 +1,12 @@
 ﻿@page "/addUser"
 @using SportStore.Application.Requests
-
-
+@using SportStore.Blazor.State
 @inject IMediator Mediator
-
+@inject NavigationManager nav
 <PageTitle> Добавление пользователя </PageTitle>
+
+
+<button class="btn btn-success p-2 mt-5" @onclick="NavToIndex">Главная страница</button>
 
 <h3 class="mt-4 mb-5"> Создание нового пользователя  </h3>
 
@@ -15,9 +17,9 @@
 
 @code {
 
-     private bool _submitSuccessful;
-     private string? _errorMessage;
-     private UserForm _userForm = default!;
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private UserForm _userForm = default!;
 
     private async Task SubmitNewUser(User user, IBrowserFile? image)
     {
@@ -30,7 +32,7 @@
             StateHasChanged();
             return;
         }
-            
+
         if (image is null)
         {
             _submitSuccessful = true;
@@ -59,6 +61,11 @@
         }
 
         return true;
+    }
+
+    public void NavToIndex()
+    {
+        nav.NavigateTo("Index");
     }
 
 }
