@@ -1,0 +1,27 @@
+@using SportStore.Blazor.State
+
+@inject AppState AppState
+
+@implements IDisposable
+
+<nav class="navbar mb-5 bg-body-tertiary shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            SportStore
+        </a>
+    </div>
+</nav>
+
+<div class="container d-flex justify-content-between">
+
+     <p>
+        Вы сохранили <span class="font-weight-bold"> @AppState.FavoriteUsersState.FavoriteUsers.Count </span> <a href="/favorite-Users"> пользователей</a>
+     </p>
+
+</div>
+
+@code {
+    protected override void OnInitialized() => AppState.FavoriteUsersState.OnChange += StateHasChanged;
+    void IDisposable.Dispose() => AppState.FavoriteUsersState.OnChange -= StateHasChanged;
+}

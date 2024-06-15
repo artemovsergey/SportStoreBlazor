@@ -1,0 +1,40 @@
+﻿@page "/favorite-Users"
+@using SportStore.Blazor.State
+@inject AppState AppState
+@implements IDisposable
+
+<PageTitle>Favorite Users - Blazing Users</PageTitle>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Favorite Users
+        </li>
+    </ol>
+</nav>
+<h3 class="mt-5 mb-4">Favorite Users</h3>
+
+@if (AppState.FavoriteUsersState.FavoriteUsers.Any())
+{
+     <UserDetail User="_selectedUser" />
+     <div class="grid">
+         @foreach (var User in AppState.FavoriteUsersState.FavoriteUsers)
+         {
+            <UserCard u="User" OnSelected="HandleUserSelected" />
+         }
+     </div>
+}
+else
+{
+
+ <NoUsers>
+    You don't have any favorite Users :(
+ </NoUsers>
+
+}
+@code {
+ private User? _selectedUser;
+ protected override void OnInitialized() => AppState.FavoriteUsersState.OnChange += StateHasChanged;
+ private void HandleUserSelected(User User) => _selectedUser = User;
+ void IDisposable.Dispose() => AppState.FavoriteUsersState.OnChange -= StateHasChanged;
+}

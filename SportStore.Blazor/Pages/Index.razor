@@ -14,6 +14,10 @@
 @if(Users.Count() == 0)
 {
     <h3> Загрузка данных о пользователях...</h3>
+    <NoUsers>
+         We currently don't have any trails, <a href="add-trail">why not add
+        one?</a>
+    </NoUsers>
 }
 else
 {
@@ -24,7 +28,7 @@ else
         <div class="grid">
              @foreach (var u in Users)
              {
-            <UserCard u="u" OnSelected="HandleUserSelected" />
+                <UserCard u="u" OnSelected="HandleUserSelected" />
              }
          </div>
 

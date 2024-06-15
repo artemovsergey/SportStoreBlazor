@@ -8,6 +8,7 @@ using SportStore.Domen.Validations;
 using System.Reflection;
 using SportStore.Application;
 using SportStore.Blazor.State;
+using Blazored.LocalStorage;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -27,6 +28,9 @@ builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(
 
 builder.Services.AddApplicationServices();
 
-builder.Services.AddSingleton<AppState>();
+builder.Services.AddScoped<AppState>();
+
+builder.Services.AddBlazoredLocalStorage();
+
 
 await builder.Build().RunAsync();

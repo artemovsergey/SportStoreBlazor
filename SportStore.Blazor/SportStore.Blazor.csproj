@@ -13,6 +13,7 @@
 		
   <ItemGroup>
     <PackageReference Include="Blazored.FluentValidation" Version="2.1.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageReference Include="MediatR" Version="12.3.0" />
 
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
@@ -64,6 +65,7 @@
   <ItemGroup>
     <Watch Remove="components\FormSection.razor.scss" />
     <Watch Remove="components\InputTime.razor.scss" />
+    <Watch Remove="components\NoUsers.scss" />
     <Watch Remove="pages\Filter.razor.scss" />
   </ItemGroup>
 

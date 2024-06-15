@@ -1,0 +1,22 @@
+﻿@using SportStore.Blazor.State
+@inject AppState AppState
+
+@if (AppState.FavoriteUsersState.IsFavorite(User))
+{
+    <button class="btn btn-outline-primary ml-1" title="Favorite" @onclick="@(() => AppState.FavoriteUsersState.RemoveFavorite(User))">
+     <i class="bi bi-heart-fill"></i>
+     </button>
+}
+ else
+ {
+    <button class="btn btn-outline-primary ml-1" title="Favorite" @onclick="@(() => AppState.FavoriteUsersState.AddFavorite(User))">
+        <i class="bi bi-heart"></i>
+     </button>
+ }
+
+
+@code {
+
+ [Parameter, EditorRequired]
+ public User User { get; set; } = default!;
+}
