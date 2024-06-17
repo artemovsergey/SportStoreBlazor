@@ -36,6 +36,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseWebAssemblyDebugging();
 }
 
 app.UseStaticFiles(new StaticFileOptions()
@@ -46,6 +47,8 @@ app.UseStaticFiles(new StaticFileOptions()
 
 
 app.UseHttpsRedirection();
+app.UseBlazorFrameworkFiles();
+
 app.MapHub<UserHub>("/test");
 app.MapControllers();
 
